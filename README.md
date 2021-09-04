@@ -1,1 +1,1 @@
-# Oleksii Hytsiv's repository
+# Oleksii Hytsiv's repository (ПМі-23)
