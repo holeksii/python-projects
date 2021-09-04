@@ -1,1 +1,1 @@
-# LNUpractice
+# Oleksii Hytsiv's repository
