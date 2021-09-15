@@ -43,12 +43,9 @@ def CreateArray():
     print("Enter array:")
   
     for i in range(0, N):
-        try:
-            elem = float(input())
-        except ValueError:
-            print("Value should be number")
-            return arr
-        arr.append(elem)
+        elem = input()
+        isNumber(elem)
+        arr.append(float(elem))
     return arr
 
 print(deleteElements(CreateArray()))
