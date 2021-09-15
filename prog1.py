@@ -23,16 +23,22 @@ def deleteElements(arr):
 def isNumber(n):
 	try:
 		int(n)
-	except:
+	except ValueError:
 		print("Value should be number")
 		exit()
 
+def isPositive(N):
+  return N >= 0
 
 def CreateArray():
     arr = []
     N = int(input("Enter number of elements : "))
   
     isNumber(N)
+
+    if not isPositive(N):
+        print("Value should be positive")
+        exit()
 
     print("Enter array:")
   
@@ -44,7 +50,5 @@ def CreateArray():
             return arr
         arr.append(elem)
     return arr
-
-
 
 print(deleteElements(CreateArray()))
