@@ -15,7 +15,16 @@ def isNumber(n):
 		print("Value should be number")
 		exit()
 
+def isPositive(n):
+	return n >= 0
+
 N = input(int())
 isNumber(N)
+try:
+	if not isPositive(N):
+		raise ValueError()
+except:
+	print("Value should be >= 0")
+	exit()
 print("number of all routes: ")
 print(func(N))
