@@ -1,30 +1,31 @@
 #6
-def func(N):
-    if N == 1:
-        return 1
-    elif N == 2:
-        return 2
-    elif N == 3:
-        return 4
-    return func(N - 1) + func (N - 2) + func(N - 3)
+def calc(N):
+	if N == 1:
+		return 1
+	elif N == 2:
+		return 2
+	elif N == 3:
+		return 4
+	return calc(N - 1) + calc(N - 2) + calc(N - 3)
 
-def isNumber(n):
+def isNumber(N):
 	try:
-		int(n)
+		int(N)
 	except:
 		print("Value should be number")
 		exit()
 
-def isPositive(n):
-	return n >= 0
+def isPositive(N):
+  return N >= 0
 
-N = input(int())
-isNumber(N)
-try:
+def getNumOfRoutes():
+	print("Enter number of routes :")
+	N = int(input())
+	isNumber(N)
+
 	if not isPositive(N):
-		raise ValueError()
-except:
-	print("Value should be >= 0")
-	exit()
-print("number of all routes: ")
-print(func(N))
+		print("Value should be positive")
+		exit()
+	return calc(N)
+
+print(getNumOfRoutes())
