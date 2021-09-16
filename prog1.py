@@ -32,24 +32,31 @@ def isPositive(N):
 
 def CreateArray():
     arr = []
-    N = input("Enter number of elements: ")
-  
-    if not isNumber(N):
-        print("Value should be a number")
-        exit()
+    while True:
+        N = input("Enter number of elements: ")
+    
+        if not isNumber(N):
+            print("Value should be a number")
+            continue
 
-    N = int(N)
+        N = int(N)
 
-    if not isPositive(N):
-        print("Value should be positive")
-        exit()
+        if not isPositive(N):
+            print("Value should be positive")
+            continue
+        break
 
+    
     print("Enter array: ")
 
     for i in range(0, N):
         elem = input()
-        isNumber(elem)
+        if not isNumber(elem):
+            print("Value should be a number")
+            print("Enter the array from the beginning:")
+            
         arr.append(float(elem))
+    
     return arr
 result = deleteElements(CreateArray())
 
