@@ -11,21 +11,25 @@ def calc(N):
 def isNumber(N):
 	try:
 		int(N)
+		return True
 	except:
-		print("Value should be number")
-		exit()
+		return False
 
 def isPositive(N):
-  return N >= 0
+  	return N >= 0
 
 def getNumOfRoutes():
 	print("Enter number of routes :")
-	N = int(input())
-	isNumber(N)
+	N = input()
+	
+	if not isNumber(N):
+		print("Value should be number")
+		exit()
 
 	if not isPositive(N):
 		print("Value should be positive")
 		exit()
-	return calc(N)
+	
+	return calc(int(N))
 
 print(getNumOfRoutes())
