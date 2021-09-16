@@ -1,6 +1,8 @@
 #6
 def calc(N):
-	if N == 1:
+	if N == 0:
+		return 0
+	elif N == 1:
 		return 1
 	elif N == 2:
 		return 2
@@ -19,17 +21,18 @@ def isPositive(N):
   	return N >= 0
 
 def getNumOfRoutes():
-	print("Enter number of routes :")
-	N = input()
+	N = input("Enter number of routes :")
 	
 	if not isNumber(N):
-		print("Value should be number")
-		exit()
+		print("Value should be a number")
+		return 
 
-	if not isPositive(N):
+	if not isPositive(int(N)):
 		print("Value should be positive")
-		exit()
-	
+		return
+
 	return calc(int(N))
 
-print(getNumOfRoutes())
+result = getNumOfRoutes()
+
+print(result)
