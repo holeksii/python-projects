@@ -21,17 +21,20 @@ def isPositive(N):
   	return N >= 0
 
 def getNumOfRoutes():
-	N = input("Enter number of routes :")
-	
-	if not isNumber(N):
-		print("Value should be a number")
-		return 
+	while True:
+		N = input("Enter number of routes :")
+		
+		if not isNumber(N):
+			print("Value should be a number")
+			continue
 
-	if not isPositive(int(N)):
-		print("Value should be positive")
-		return
+		N = int(N)
+		
+		if not isPositive(N):
+			print("Value should be positive")
+			continue
 
-	return calc(int(N))
+		return calc(N)
 
 result = getNumOfRoutes()
 
