@@ -20,32 +20,37 @@ def deleteElements(arr):
             arr.pop(4 * i - i)
     return arr
 
-def isNumber(n):
+def isNumber(N):
 	try:
-		int(n)
-	except ValueError:
-		print("Value should be number")
-		exit()
+		int(N)
+		return True
+	except:
+		return False
 
 def isPositive(N):
-  return N >= 0
+  	return N >= 0
 
 def CreateArray():
     arr = []
-    N = int(input("Enter number of elements : "))
+    N = input("Enter number of elements: ")
   
-    isNumber(N)
+    if not isNumber(N):
+        print("Value should be a number")
+        exit()
+
+    N = int(N)
 
     if not isPositive(N):
         print("Value should be positive")
         exit()
 
-    print("Enter array:")
-  
+    print("Enter array: ")
+
     for i in range(0, N):
         elem = input()
         isNumber(elem)
         arr.append(float(elem))
     return arr
+result = deleteElements(CreateArray())
 
-print(deleteElements(CreateArray()))
+print(result)
