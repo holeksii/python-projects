@@ -49,15 +49,23 @@ def CreateArray():
     
     print("Enter array: ")
 
-    for i in range(0, N):
-        elem = input()
-        if not isNumber(elem):
-            print("Value should be a number")
-            print("Enter the array from the beginning:")
-            
-        arr.append(float(elem))
-    
+    k = 1
+
+    while k == 1:   
+        k = 0
+        for i in range(0, N):
+            elem = input()
+            if not isNumber(elem):
+                print("Value should be a number")
+                print("Enter the array from the beginning:")
+                k = 1
+                break
+            arr.append(float(elem))
+            if i == N:
+                k = 0
+
     return arr
+    
 result = deleteElements(CreateArray())
 
 print(result)
