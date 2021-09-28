@@ -1,4 +1,3 @@
-# 6
 import numpy as np
 
 def isNumber(N):
@@ -9,7 +8,7 @@ def isNumber(N):
 		    return False
 
 def isPositive(N):
-  	return N >= 0
+  	return N > 0
 
 def Exit(val):
     if val != 'exit':
@@ -21,26 +20,26 @@ def getPositiveNumber():
     while True:
         num = input()
         if not isNumber(num):
-            print("Value should be a number")
             Exit(num)
+            print("Value should be a number")
             continue
         num = int(num)
         if not isPositive(num):
-            print("Value should be a positive number")
             Exit(num)
+            print("Value should be a positive number")
             continue
         break
     return num
 
 def CreateMatrixA():
-    print("Enter number of rows: ")
+    print("Please enter number of rows: ")
     N = getPositiveNumber()
-    print("Enter number of cols: ")
+    print("Please enter number of cols: ")
     M = getPositiveNumber()
 
     A = np.zeros((N, M))
 
-    print("Use enter to input the matrix")
+    print("Please enter matrix element by element")
 
     for i in range(N):
         for j in range(M):
@@ -57,5 +56,22 @@ def newMatrixB(A):
                 B[i][j] += A[f][j]
     return B
 
-result = newMatrixB( CreateMatrixA())
-print(result)
+def Run():
+    return newMatrixB(CreateMatrixA())
+
+def menu():
+    options = {'1 - Run' : Run,
+               '2 - Exit' : exit}
+    
+    print("Hello :)\nYou are in Menu, choose one option to continue:")
+
+    while True:
+        for key in options.keys():
+            print(key)
+        option = input()
+        for i in options.keys():
+            if option == i[0]:
+                return options[i]()
+        print('Oops!\nTry to choose from available options:')
+
+print(menu())
