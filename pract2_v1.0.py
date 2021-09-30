@@ -101,54 +101,6 @@ def sortMatrix(matrix):
     return matrix
 
 
-"""
-def arrayBinarySearch (arr, l, r, x):
-    if r >= l:
-        mid = l + (r - l) // 2
-
-        if arr[mid] == x:
-            return mid
-        elif arr[mid] > x:
-            return arrayBinarySearch(arr, l, mid-1, x)
-        else:
-            return arrayBinarySearch(arr, mid + 1, r, x)
-    else:
-        return -1
-
-def MatrixbinarySearch(matrix, srchVal):
-    found = False
-
-    rows = len(matrix)
-    cols = len(matrix[0])
-
-    i = len(matrix) // 2
-    j = len(matrix[0]) // 2
-
-    i_srch = 0
-    j_srch = 0
-
-    while found == False:
-        if srchVal >= matrix[i][0] and srchVal <= matrix[i][cols-1]:
-            i_srch = i
-            found = True
-        elif srchVal<=matrix[i][0]:
-            i //= 2 
-            if i == 0:
-                i_srch = 0
-                found = True
-        elif srchVal>=matrix[i][cols-1]:
-            i = ceil(i+i/2)
-            if i == rows-1:
-                i_srch = i
-                found = True
-    j_srch = arrayBinarySearch(matrix[i_srch], 0, cols-1, srchVal)
-    if j_srch == -1:
-        return "value not found"
-
-    return i_srch, j_srch
-"""
-
-
 def matrixBinarySearch(matrix, srchVal):
     cols = len(matrix[0])
     rows = len(matrix)
