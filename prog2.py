@@ -1,4 +1,5 @@
 import numpy as np
+from random import randrange
 
 def isNumber(N):
 	try:
@@ -16,22 +17,25 @@ def Exit(val):
     else:
         exit()
 
-def getPositiveNumber():
+def getPositiveNumber(m):
+# if m == True, function return positive number,
+# if m == False, function returns number
     while True:
         num = input()
         if not isNumber(num):
-            Exit(num)
             print("Value should be a number")
+            Exit(num)
             continue
         num = int(num)
-        if not isPositive(num):
-            Exit(num)
-            print("Value should be a positive number")
-            continue
+        if m == True:
+            if not isPositive(num):
+                print("Value should be a positive number")
+                Exit(num)
+                continue
         break
     return num
 
-def CreateMatrixA():
+def EnterMatrixA():
     print("Please enter number of rows: ")
     N = getPositiveNumber()
     print("Please enter number of cols: ")
@@ -46,6 +50,27 @@ def CreateMatrixA():
             A[i][j] = getPositiveNumber()
     return A
 
+def generateMatrix():
+    print("Enter number of rows: ")
+    N = getPositiveNumber(True)
+    print("Enter number of columns: ")
+    M = getPositiveNumber(True)
+    matrix = np.zeros((N, M))  
+    print("Input range number by number")
+    while True:
+        a = getPositiveNumber(False)
+        b = getPositiveNumber(False)
+        if (b < a):
+            print("The lower limit cannot be bigger than the upper limit, try again:")
+            continue
+        break
+    for i in range(N):
+        for j in range(M):
+            matrix[i][j] = randrange(a, b)
+    
+    print("YOUR MATRIX:\n", matrix)
+    return matrix
+
 def newMatrixB(A):
     N = len(A)
     M = len(A[0])
@@ -56,12 +81,14 @@ def newMatrixB(A):
                 B[i][j] += A[f][j]
     return B
 
-def Run():
-    return newMatrixB(CreateMatrixA())
+def Run(func):
+    print("New Matrix:")
+    return newMatrixB(func)
 
 def menu():
-    options = {'1 - Run' : Run,
-               '2 - Exit' : exit}
+    options = {'1 - Enter matrix' : EnterMatrixA,
+               '2 - Randomly generate matrix, specifying the values range limites': generateMatrix,
+               '3 - Exit' : exit}
     
     print("Hello :)\nYou are in Menu, choose one option to continue:")
 
@@ -74,4 +101,5 @@ def menu():
                 return options[i]()
         print('Oops!\nTry to choose from available options:')
 
-print(menu())
+while True:
+    print(Run(menu()))
