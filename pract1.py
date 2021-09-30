@@ -1,4 +1,3 @@
-#6
 def calc(N):
 	if N == 0:
 		return 0
