@@ -68,3 +68,15 @@ class CarReservation:
     def price(self, pr):
         self._price = pr
         
+
+
+    @classmethod
+    def from_list(cls, l):
+        return cls(l[0], l[1], l[2], l[3], l[4], l[5])
+
+
+    def __str__(self) -> str:
+        ret = ''
+        for item in self.__dict__.values():
+            ret += str(item) + '\n'
+        return ret

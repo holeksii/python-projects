@@ -242,10 +242,10 @@ class Validators:
 
     @staticmethod
     def datetime(func):
-        def wrapper(self, datetime):
+        def wrapper(self, dtime):
             try:
-                datetime.datetime.strptime(datetime, '%Y-%m-%d %I:%M')
-                return func(self, datetime)
+                datetime.datetime.strptime(dtime, '%Y-%m-%d %H:%M')
+                return func(self, dtime)
             except:
                 raise ValueError("invalid datetime")
         
