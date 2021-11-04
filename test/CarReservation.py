@@ -4,6 +4,7 @@ class CarReservation:
     cars = [ "Audi A3", "BMW X1", "Toyota Yaris", "Volkswagen T-Roc", "Ford Fiesta", "Honda Civic", "Volkswagen Golf" ]
 
     def __init__(self, id, car, start_datetime, end_datetime, name, price) -> None:
+        Vld.wrong_datetime(start_datetime, end_datetime)
         self.id = id
         self.car = car
         self.start_datetime = start_datetime

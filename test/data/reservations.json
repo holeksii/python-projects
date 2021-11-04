@@ -6,5 +6,16 @@
     "end_datetime" : "2020-01-02 10:00", 
     "name" : "Alex", 
     "price" : 120 
+    },
+
+    {
+        "id": 532324,
+        "car" : "Volkswagen T-Roc", 
+        "start_datetime" : "2020-01-01 10:00",
+        "end_datetime" : "2020-01-02 10:00", 
+        "name" : "Alex", 
+        "price" : 120 
     }
+
+
 ]

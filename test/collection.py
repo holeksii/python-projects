@@ -1,5 +1,7 @@
 import json
 from CarReservation import CarReservation as CR
+from datetime import timedelta
+import datetime
 
 class Collection:
     FILEPATH = "data/reservations.json"
@@ -30,12 +32,17 @@ class Collection:
         lst_of_cars = []
         i = 0
         for dict in data:
+
             lst_of_items = []
             for dict_item in dict.values():
                 lst_of_items.append(dict_item)
+
+
             try:
-                # if lst_of_items[0] in dict.values():
-                #     return
+                if lst_of_items[0] in list(dict.values())[1:]:
+                    continue
+                # print(lst_of_items[0])
+                # print(list(dict.values())[1:])
                 car = CR.from_list(lst_of_items)
             except:
                 return
@@ -59,6 +66,40 @@ class Collection:
             st += 2 * '\n'
         return st
 
+
+    def dump_to_json(self):
+        dicts = self.ads_to_dict()
+        with open(self.FILEPATH, "w") as outfile: 
+            json.dump(dicts, outfile, indent=4)
     
+
+    def max_spending_person_by_year(self):
+        maxs = 0
+        today = datetime.datetime.now()
+
+        for p in self.car_reservations:
+            if p.price > maxs and (today - p.end_datetime).days < 365:
+                maxs = p.price
+
+        ret = []
+        for p in self.car_reservations:
+            if p.price == maxs and (today - p.end_datetime).days < 365:
+                ret.append(p.name)
+
+        return ret
+
+
+
+
+    def idkhowtonamethis(self):
+        carsD = {CR.cars[i]:0  for i in range(0, len(CR.cars))}
+        today = datetime.datetime.now()
+        for p in self.car_reservations:
+            if (today - p.end_datetime).days < 365:
+                carsD[p.car] += (p.end_datetime - p.start_datetime).days
+        
+        return carsD
+
+
 c=Collection.from_json()
 print(c)
