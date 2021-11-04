@@ -1,0 +1,9 @@
+[
+    id, 
+    car, 
+    start_datetime, 
+    end_datetime, 
+    name, 
+    price
+
+]
