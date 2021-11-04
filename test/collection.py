@@ -40,11 +40,12 @@ class Collection:
 
             try:
                 if lst_of_items[0] in list(dict.values())[1:]:
-                    continue
+                    print("same id detected")
                 # print(lst_of_items[0])
                 # print(list(dict.values())[1:])
                 car = CR.from_list(lst_of_items)
-            except:
+            except Exception as e:
+                
                 return
                 # errors = CR.get_errors(lst_of_items)
                 # print(f'errors in CAR RESERVATION {i}')
@@ -100,6 +101,3 @@ class Collection:
         
         return carsD
 
-
-c=Collection.from_json()
-print(c)
