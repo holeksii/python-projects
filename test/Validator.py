@@ -55,71 +55,7 @@ class Validators:
         else:
             exit()
 
-    ###
-    @staticmethod
-    def Url(url):
-        url = str(url)
-        if url[:8] == "https://" or url[:7] == "http://":
-            if url[len(url) - 1] != '.' and '.' in url:
-                return url
-        raise ValueError("invalid url")
     
-    ###
-    @staticmethod
-    def Date(date):
-
-        formats = ["%Y-%m-%d", "%Y.%m.%d", "%Y/%m/%d", "%Y\%m\%d"]
-
-        for format in formats:
-            try:
-                datetime.datetime.strptime(date, format)
-                return date
-            except:
-                continue
-        raise ValueError("invalid date")
-          
-
-    ###
-    @staticmethod
-    def Currency(val):
-        max_price = 99999
-        val = float(val)
-        if not Validators.isInt(val) or not Validators.isPositive(val):
-            raise ValueError("invalid currency type")
-        if val < 1 or val > max_price:
-            raise ValueError("invalid currency type")
-        return round(val, 2)
-
-    ###
-    @staticmethod
-    def Transaction_number(trsct_num):
-        """
-            FORMAT:
-            XX-YYY-XX/YY
-            X - letter
-            Y - number
-        """
-        if trsct_num[2] != '-' or trsct_num[6] != '-' or trsct_num[9] != '/':
-            raise ValueError("invalid transaction number")
-
-        if len(trsct_num) != 12:
-            raise ValueError("invalid transaction number")
-
-        if not trsct_num[:2].isalpha() or not trsct_num[7:9].isalpha():
-            raise ValueError("invalid transaction number")
-
-        if not Validators.isInt(trsct_num[3:6]) or not Validators.isInt(trsct_num[-2:]):
-            raise ValueError("invalid transaction number")
-
-        return trsct_num
-
-
-    ###
-    @staticmethod
-    def Title(title):
-        if str(title).istitle():
-            return title
-        raise ValueError("invalid title")
 
     ###
     @staticmethod
@@ -145,16 +81,6 @@ class Validators:
             
         return wrapper
 
-    @staticmethod
-    def url(func):
-        def wrapper(self, url):
-            url = str(url)
-            if url[:8] == "https://" or url[:7] == "http://":
-                if url[len(url) - 1] != '.' and '.' in url:
-                    return func(self,url)
-            raise ValueError("invalid url")
-            
-        return wrapper
 
     @staticmethod
     def date(func):
@@ -242,15 +168,15 @@ class Validators:
 
     @staticmethod
     def datetime(func):
-        def wrapper(self, dtime):
+        def wrapper(self, datestr):
             try:
-                datetime.datetime.strptime(dtime, '%Y-%m-%d %H:%M')
-                return func(self, dtime)
-            except:
+                datetime.datetime.strptime(datestr, '%Y-%m-%d %H:%M')
+                return func(self, datestr)
+            except Exception as e:
+
                 raise ValueError("invalid datetime")
         
         return wrapper
-
 
     @staticmethod
     def wrong_datetime(start, end):

@@ -21,6 +21,10 @@ class Collection:
         self._car_reservations = cars
 
 
+    def add(self, lst):
+        self.car_reservations.append(CR.from_list(lst))
+
+
     @classmethod
     def from_json(cls, filename=FILEPATH):
         objFile = open(filename, "r")
@@ -31,8 +35,8 @@ class Collection:
 
         lst_of_cars = []
         i = 0
-        for dict in data:
-
+        for i in range(len(data)):
+            dict = data[i]
             lst_of_items = []
             for dict_item in dict.values():
                 lst_of_items.append(dict_item)
@@ -40,19 +44,22 @@ class Collection:
 
             try:
                 if lst_of_items[0] in list(dict.values())[1:]:
-                    print("same id detected")
+                    
+                    raise ValueError("the same id")
+                    print("WTF")
                 # print(lst_of_items[0])
                 # print(list(dict.values())[1:])
                 car = CR.from_list(lst_of_items)
+                lst_of_cars.append(car)
             except Exception as e:
-                
-                return
+                pass
+
                 # errors = CR.get_errors(lst_of_items)
                 # print(f'errors in CAR RESERVATION {i}')
                 # for error in errors:
                 #     print(error)
             i += 1
-            lst_of_cars.append(car)
+            
 
         objFile.close()
         
@@ -90,14 +97,14 @@ class Collection:
         return ret
 
 
-
-
     def idkhowtonamethis(self):
         carsD = {CR.cars[i]:0  for i in range(0, len(CR.cars))}
         today = datetime.datetime.now()
         for p in self.car_reservations:
             if (today - p.end_datetime).days < 365:
-                carsD[p.car] += (p.end_datetime - p.start_datetime).days
+                if p.start_datetime < today - timedelta(days=365):
+                    carsD[p.car] += (p.end_datetime - (today - timedelta(days=365))).days
+                else:
+                    carsD[p.car] += (p.end_datetime -p.start_datetime).days
         
         return carsD
-

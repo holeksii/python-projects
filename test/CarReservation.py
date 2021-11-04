@@ -1,5 +1,5 @@
 from Validator import Validators as Vld
-
+import datetime
 class CarReservation:
     cars = [ "Audi A3", "BMW X1", "Toyota Yaris", "Volkswagen T-Roc", "Ford Fiesta", "Honda Civic", "Volkswagen Golf" ]
 
@@ -40,7 +40,7 @@ class CarReservation:
     @start_datetime.setter
     @Vld.datetime
     def start_datetime(self, dtime):
-        self._start_datetime = dtime
+        self._start_datetime = datetime.datetime.strptime(dtime, '%Y-%m-%d %H:%M')
 
     @property
     def end_datetime(self):
@@ -49,8 +49,7 @@ class CarReservation:
     @end_datetime.setter
     @Vld.datetime
     def end_datetime(self, dtime):
-        self._end_datetime = dtime
-
+        self._end_datetime = datetime.datetime.strptime(dtime, '%Y-%m-%d %H:%M')
     @property
     def name(self):
         return self._name
