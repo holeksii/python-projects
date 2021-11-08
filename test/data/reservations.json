@@ -1,0 +1,29 @@
+[
+    {
+    "id": 532324,
+    "car" : "Volkswagen T-Roc", 
+    "start_datetime" : "2020-01-01 10:00",
+    "end_datetime" : "2021-08-02 09:00", 
+    "name" : "Alex", 
+    "price" : 120 
+    },
+
+    {
+        "id": 532324,
+        "car" : "Audi A3",
+        "start_datetime" : "2021-01-01 10:00",
+        "end_datetime" : "2021-01-02 15:00",
+        "name" : "Ron", 
+        "price" : 460
+    },
+
+    {
+        "id": 582324,
+        "car" : "Volkswagen Golf", 
+        "start_datetime" : "2011-08-01 10:00",
+        "end_datetime" : "2021-09-02 22:00",
+        "name" : "Ben", 
+        "price" : 1200
+    }
+    
+]
