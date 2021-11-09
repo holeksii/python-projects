@@ -1,6 +1,6 @@
 import json
-from Advertisment import ADVERTISEMENT as AD
-from operator import itemgetter, attrgetter
+from Advertisment.Advertisment import ADVERTISEMENT as AD
+from operator import attrgetter#, itemgetter
 import copy
 
 

@@ -1,6 +1,6 @@
-from Collection import Collection
-from Advertisment import ADVERTISEMENT as AD
-from Memento import Memento
+from Advertisment.Collection import Collection
+from Advertisment.Advertisment import ADVERTISEMENT as AD
+from Patterns.Memento import Memento
 
 
 

@@ -1,4 +1,4 @@
-from Validator import Validators as Vld
+from Validators.Validator import Validators as Vld
 
 
 class ADVERTISEMENT:
@@ -70,6 +70,7 @@ class ADVERTISEMENT:
     def title(self):
         return self._title
 
+
     @title.setter
     @Vld.title
     def title(self, ttl):
@@ -80,10 +81,12 @@ class ADVERTISEMENT:
     def photo_url(self):
         return self._photo_url
 
+
     @photo_url.setter
     @Vld.url
     def photo_url(self, urll):
         self._photo_url = urll
+
 
     def __str__(self) -> str:
         ret = ''

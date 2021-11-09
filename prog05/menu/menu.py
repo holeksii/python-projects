@@ -1,5 +1,5 @@
-from Collection import Collection
-from Option import Option
+from Advertisment.Collection import Collection
+from menu.Option import Option
 import sys
 
 
