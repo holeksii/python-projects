@@ -41,6 +41,7 @@ class Option:
                         for item in Strategy.strategy1(low, up, size):
                             self.linked_list.insert(k, item)
                             k += 1
+                        ok = True
                     except Exception as e:
                         print(e)
                 else:
@@ -89,21 +90,22 @@ class Option:
 
     def option3(self):
         while True:
-            print("low bound: ", end=' ')
-            low = VLD.get_number()
-            print("up bound: ", end=' ')
-            up = VLD.get_number()
-            if not VLD.a_bigger_b(up, low):
-                print("invalid bounds")
+            print("choose strategy:\n1 -- generate\n2 -- from file")
+            try:
+                op = int(input())
+            except:
+                print("invalid option")
                 continue
-            break
-
-        print("size of list: ", end=' ')
-        size = VLD.get_strictly_positive()
-        
-        if len(self.linked_list) != 0:
-            self.linked_list.clear()
-        self.linked_list.generate(low, up, size)
+            if op == 1:
+                self.option1()
+                break
+            elif op == 2:
+                self.option2()
+                break
+            else:
+                print("invalid option")
+                continue
+            
 
     def option4(self):
         print("position: ", end=' ')
