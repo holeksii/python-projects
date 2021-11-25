@@ -20,7 +20,7 @@ class LinkedList:
                 lst += f'{temp_node.data} '
                 temp_node = temp_node.next
         else:
-            return "The List is empty"
+            return "[ ]"
         return lst + ']'
 
 

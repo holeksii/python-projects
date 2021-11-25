@@ -2,7 +2,10 @@ from List.LinkedList import LinkedList
 from patterns.Strategy.Strategy import Strategy
 from List.Validation import validation as VLD
 from List.task_funсtions import deleteElements
-from patterns.Observer.Observer import Observer, Event
+from patterns.Observer.Observer import Observer
+from patterns.Observer.Event import Event
+from copy import deepcopy
+import sys
 
 class Option:
     
@@ -25,6 +28,7 @@ class Option:
 
     def option1(self):
         ok = False
+        old = deepcopy(self.linked_list)
         while not ok:
             print("low bound: ", end=' ')
             low = VLD.get_number()
@@ -60,7 +64,7 @@ class Option:
                     print(e)
         
         
-        self.changes.append((Event("add", old_list="[]", position=str(i), new_list=str(self.linked_list)).to_dict()))
+        self.changes.append((Event("add", old_list=str(old), position=str(i), randrange=f"({low}, {up}, {size})", new_list=str(self.linked_list)).to_dict()))
         self.observe.update(self.changes)
         
                     
@@ -68,10 +72,12 @@ class Option:
 
     def option2(self):
         ok = False
+        old = deepcopy(self.linked_list)
         while not ok:
             print("FILEPATH: ", end=' ')
             FILEPATH = input()
             i = 0
+            
             if len(self.linked_list) != 0:
                 print("position to paste: ", end=' ')
                 k = VLD.get_index(len(self.linked_list) + 1)
@@ -95,7 +101,7 @@ class Option:
                 except Exception as e:
                     print(e)
         
-        self.changes.append((Event("add", old_list="[]", position=str(i), new_list=str(self.linked_list)).to_dict()))
+        self.changes.append((Event("add", old_list=str(old), position=str(i), FILEPATH=FILEPATH, new_list=str(self.linked_list)).to_dict()))
         self.observe.update(self.changes)
 
 
@@ -122,10 +128,10 @@ class Option:
         print("position: ", end=' ')
         k = VLD.get_index(len(self.linked_list))
         
-        old = str(self.linked_list)
+        old = deepcopy(self.linked_list)
         self.linked_list.pop(k)
         
-        self.changes.append((Event("delete", old_list=old, position=str(k), new_list=str(self.linked_list)).to_dict()))
+        self.changes.append((Event("delete", old_list=str(old), position=str(k), new_list=str(self.linked_list)).to_dict()))
         self.observe.update(self.changes)
 
 
@@ -143,13 +149,13 @@ class Option:
                 print("invalid bounds")
                 continue
             
-            old = str(self.linked_list)
+            old = deepcopy(self.linked_list)
             
             for i in range(up - low + 1):
                 self.linked_list.pop(low)
                 
                 
-            self.changes.append(Event("delete", old_list=old, range=f"[{low}, {up}]", new_list=str(self.linked_list)).to_dict())
+            self.changes.append(Event("delete", old_list=str(old), range=f"[{low}, {up}]", new_list=str(self.linked_list)).to_dict())
             self.observe.update(self.changes)
                 
             break
@@ -167,6 +173,12 @@ class Option:
         for item in self.linked_list:
             print(item, end=' ')
         print(end='\n\n')
+
+
+    def Exit(self):
+        self.changes.append("EXIT")
+        self.observe.update(self.changes)
+        sys.exit()
 
 
     def save(self):

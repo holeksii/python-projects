@@ -7,8 +7,7 @@ class validation:
             return True
         except:
             return False
-
-
+        
 
     @staticmethod
     def isPositive(val):

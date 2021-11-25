@@ -1,5 +1,4 @@
 from menu.Option import Option
-import sys
 
 
 menu_options =\
@@ -29,7 +28,7 @@ def options(options, option):
         5: options.option5,
         6: options.option6,
         7: options.print_linked_list,
-        8: sys.exit
+        8: options.Exit
 
     }.get(option)
 
